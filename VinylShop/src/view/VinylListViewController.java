@@ -14,7 +14,7 @@ public class VinylListViewController
 
   @FXML private TableColumn<,>
 
-  private VinylListViewModel vinylListViewModel;
+  private ListVinylViewModel vinylListViewModel;
   private Region root;
   private ViewHandler viewHandler;
 

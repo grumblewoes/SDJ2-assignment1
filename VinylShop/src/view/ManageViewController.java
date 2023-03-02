@@ -3,21 +3,22 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import viewmodel.ManageVinylViewModel;
 
 public class ManageViewController
 {
   @FXML private Label reserveLabel;
   @FXML private Label borrowLabel;
 
-  private ManageViewModel manageViewModel;
+  private ManageVinylViewModel manageVinylViewModel;
   private ViewHandler viewHandler;
   private Region root;
 
 
-  public void init(ViewHandler viewHandler, ManageViewModel manageViewModel, Region root){
+  public void init(ViewHandler viewHandler, ManageVinylViewModel manageVinylViewModel, Region root){
     this.root = root;
     this.viewHandler = viewHandler;
-    this.manageViewModel = manageViewModel;
+    this.manageVinylViewModel = manageVinylViewModel;
     reserveLabel.textProperty().bindBidirectional(manageViewModel.requestProperty());
     borrowLabel.textProperty().bindBidirectional(manageViewModel.requestProperty());
 
@@ -28,11 +29,11 @@ public class ManageViewController
   }
 
   @FXML private void clickReserve(){
-    manageViewModel.reserve();
+    manageVinylViewModel.reserve();
   }
 
   @FXML private void clickBorrow(){
-    manageViewModel.borrow();
+    manageVinylViewModel.borrow();
   }
 
   @FXML private void onShow(){
