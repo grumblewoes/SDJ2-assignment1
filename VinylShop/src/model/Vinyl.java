@@ -2,7 +2,7 @@ package model;
 
 public class Vinyl
 {
-  private String title, artist, status, reservedBy;
+  private String title, artist, status, reservedBy, borrowedBy;
   private int year;
   private boolean pendingRemoval;
 
@@ -15,6 +15,7 @@ public class Vinyl
 
     status = "available";
     reservedBy = "";
+    borrowedBy = "";
     pendingRemoval = false;
     state = new AvailableState();
   }
@@ -44,5 +45,9 @@ public class Vinyl
 
   public String getReservedBy() { return reservedBy; }
 
-  public void setReservedBy(String who) { reservedBy = who; }
+  public Vinyl setReservedBy(String who) { reservedBy = who; return this; }
+
+  public Vinyl setBorrowedBy(String who) { borrowedBy = who; return this; }
+
+  public String getBorrowedBy() { return borrowedBy; }
 }
