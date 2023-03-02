@@ -19,9 +19,10 @@ public class ManageViewController
     this.root = root;
     this.viewHandler = viewHandler;
     this.manageVinylViewModel = manageVinylViewModel;
-    reserveLabel.textProperty().bindBidirectional(manageViewModel.requestProperty());
-    borrowLabel.textProperty().bindBidirectional(manageViewModel.requestProperty());
-
+    reserveLabel.textProperty().bindBidirectional(manageVinylViewModel.requestProperty());
+    borrowLabel.textProperty().bindBidirectional(manageVinylViewModel.requestProperty());
+//reset needs to be called
+    // init too
   }
 
   public Region getRoot(){
@@ -36,7 +37,7 @@ public class ManageViewController
     manageVinylViewModel.borrow();
   }
 
-  @FXML private void onShow(){
-    viewHandler.openView("Manage");
+  @FXML private void goBack(){
+    viewHandler.openView("Vinyl List");
   }
 }

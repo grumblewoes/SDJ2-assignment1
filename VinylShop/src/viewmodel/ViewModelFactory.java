@@ -1,6 +1,7 @@
 package viewmodel;
 
 import model.Vinyl;
+import model.VinylModel;
 
 public class ViewModelFactory
 
@@ -8,12 +9,12 @@ public class ViewModelFactory
   private ViewState viewState;
   private ManageVinylViewModel manageViewModel;
   private ListVinylViewModel listViewModel;
-  private Vinyl model;
+  private VinylModel model;
 
-  public ViewModelFactory (Vinyl model) {
+  public ViewModelFactory (VinylModel model) {
     this.viewState = new ViewState();
     this.manageViewModel = new ManageVinylViewModel(model, viewState);
-    this.listViewModel = new ListVinylViewModel(model,viewState);
+    this.listViewModel = new ListVinylViewModel();
   }
   public ManageVinylViewModel getManageVinylViewModel() {
     return manageViewModel;

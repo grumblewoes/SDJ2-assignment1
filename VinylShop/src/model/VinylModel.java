@@ -1,6 +1,7 @@
 package model;
 
 import utility.observer.javaobserver.UnnamedPropertyChangeSubject;
+import java.util.ArrayList;
 
 public interface VinylModel extends UnnamedPropertyChangeSubject
 {
@@ -10,5 +11,6 @@ public interface VinylModel extends UnnamedPropertyChangeSubject
   void reserveVinyl(String title, String person);
   void returnVinyl(String title);
   ArrayList<Vinyl> getAllVinyls();
+  void removeVinyl(String title);
 
 }

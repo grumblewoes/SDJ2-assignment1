@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.Region;
+import model.Vinyl;
+import viewmodel.ListVinylViewModel;
 
 public class VinylListViewController
 {
@@ -12,14 +14,14 @@ public class VinylListViewController
   @FXML private Label reserveLabel;
   @FXML private Label borrowLabel;
 
-  @FXML private TableColumn<,>
+  @FXML private TableColumn<Vinyl,String> tableColumn;
 
   private ListVinylViewModel vinylListViewModel;
   private Region root;
   private ViewHandler viewHandler;
 
 
-  public void init(ViewHandler viewHandler, VinylListViewModel vinylListViewModel, TableColumn tableColumn ){
+  public void init(ViewHandler viewHandler, ListVinylViewModel vinylListViewModel, TableColumn tableColumn ){
     this.root = root;
     this.viewHandler = viewHandler;
     this.vinylListViewModel = vinylListViewModel;
@@ -28,6 +30,7 @@ public class VinylListViewController
     borrowLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
     reserveLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
     returnLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
+
   }
 
   public Region getRoot(){
@@ -35,15 +38,15 @@ public class VinylListViewController
   }
 
   @FXML private void clickReserve(){
-    vinylListViewModel.reserve();
+    vinylListViewModel.reserveVinyl();
   }
 
   @FXML private void clickReturn(){
-    vinylListViewModel.reserve();
+    vinylListViewModel.returnVinyl();
   }
 
   @FXML private void clickBorrow(){
-    vinylListViewModel.borrow();
+    vinylListViewModel.borrowVinyl();
   }
 
   @FXML private void clickRemove(){

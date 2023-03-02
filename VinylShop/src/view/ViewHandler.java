@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import viewmodel.ViewModelFactory;
 
 public class ViewHandler
 {
@@ -29,11 +30,11 @@ public class ViewHandler
     switch(id)
     {
       case "Vinyl List":
-        root = loadVinylListViewController("");
+        root = loadVinylListViewController("VinylList.fxml");
         break;
 
       case "Manage":
-        root = loadManageViewController("manage.fxml");
+        root = loadManageViewController("Manage.fxml");
         break;
 
     }
@@ -61,7 +62,7 @@ public class ViewHandler
        loader.setLocation(getClass().getResource(fxml));
        root = loader.load();
        vinylListViewController = loader.getController();
-       vinylListViewController.init(this, viewModelFactory.getVinylListViewModel(), root);
+       vinylListViewController.init(this, viewModelFactory.getListVinylViewModel(), root);
 
      }
      catch(Exception e)
@@ -81,10 +82,10 @@ public class ViewHandler
       try
       {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(manage.fxml));
+        loader.setLocation(getClass().getResource("manage.fxml"));
         root = loader.load();
         manageViewController = loader.getController();
-        manageViewController.init(this, viewModelFactory.getManageViewModel(), root);
+        manageViewController.init(this, viewModelFactory.getManageVinylViewModel(), root);
 
       }
       catch(Exception e)

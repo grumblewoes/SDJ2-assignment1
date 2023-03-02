@@ -13,7 +13,7 @@ public class VinylModelManager implements VinylModel
   public VinylModelManager(){
     vinylList = new ArrayList<>();
     property = new PropertyChangeSupport(this);
-
+    new LendingSimulation(this);
   }
 
   @Override public Vinyl getVinylByTitle(String title)
@@ -29,6 +29,7 @@ public class VinylModelManager implements VinylModel
   @Override public void addVinyl(Vinyl v)
   {
     vinylList.add(v);
+    property.firePropertyChange("Add",null,v);
   }
 
   @Override public void borrowVinyl(String title, String person)
@@ -43,7 +44,19 @@ public class VinylModelManager implements VinylModel
 
   @Override public void returnVinyl(String title)
   {
-    getVinylByTitle(title).setBorrowedBy(null).click();
+    Vinyl v = getVinylByTitle(title);
+    if(v.isPendingRemoval() && v.getReservedBy()==null)
+      vinylList.remove(v);
+    v.setBorrowedBy(null).click();
+  }
+
+  @Override public void removeVinyl(String title)
+  {
+    Vinyl v = getVinylByTitle(title);
+    v.setPendingRemoval(true);
+
+    if( v.getBorrowedBy()==null && v.getReservedBy()==null)
+      vinylList.remove(v);
 
   }
 
