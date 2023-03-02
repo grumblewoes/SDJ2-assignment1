@@ -43,7 +43,8 @@ public class VinylModelManager implements VinylModel
 
   @Override public void returnVinyl(String title)
   {
-    Vinyl v
+    getVinylByTitle(title).setBorrowedBy("").setReservedBy(")").click()
+
   }
 
   @Override public ArrayList<Vinyl> getAllVinyls()
