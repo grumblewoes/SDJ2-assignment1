@@ -2,5 +2,5 @@ package model;
 
 public interface LendingState
 {
-  void click(String nextState, Vinyl vinyl);
+  void click(Vinyl vinyl);
 }

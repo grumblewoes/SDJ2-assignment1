@@ -24,9 +24,9 @@ public class Vinyl
     this.state = state;
   }
 
-  public void click(String nextState)
+  public void click()
   {
-    state.click(nextState, this);
+    state.click(this);
   }
 
   public String getTitle() { return title; }
