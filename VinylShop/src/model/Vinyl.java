@@ -14,8 +14,8 @@ public class Vinyl
     this.year = year;
 
     status = "available";
-    reservedBy = "";
-    borrowedBy = "";
+    reservedBy = null;
+    borrowedBy = null;
     pendingRemoval = false;
     state = new AvailableState();
   }
@@ -45,9 +45,23 @@ public class Vinyl
 
   public String getReservedBy() { return reservedBy; }
 
-  public Vinyl setReservedBy(String who) { reservedBy = who; return this; }
+  public Vinyl setReservedBy(String who) {
+    if (pendingRemoval)
+      throw new IllegalStateException("You cannot reserve a vinyl that is pending removal.");
+    //if it is already reserved
+    else if (!reservedBy.equals(null))
+      throw new IllegalStateException("You cannot reserve a vinyl that is already reserved by somebody else.");
+    reservedBy = who;
+    return this;
+  }
 
-  public Vinyl setBorrowedBy(String who) { borrowedBy = who; return this; }
+  public Vinyl setBorrowedBy(String who) {
+    //if it is reserved and the person trying to borrow is not the one who reserved it
+    if (!reservedBy.equals(null) && !reservedBy.equals(who))
+      throw new IllegalStateException("The person who reserved the vinyl must be the one to borrow it.");
+    borrowedBy = who;
+    return this;
+  }
 
   public String getBorrowedBy() { return borrowedBy; }
 }
