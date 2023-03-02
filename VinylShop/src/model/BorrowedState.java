@@ -2,11 +2,11 @@ package model;
 
 public class BorrowedState implements LendingState
 {
-  @Override public void click(String nextState, Vinyl vinyl)
+  @Override public void click(Vinyl vinyl)
   {
-    if (nextState.equals("available"))
+    if (vinyl.getBorrowedBy().equals(null))
       vinyl.setState(new AvailableState());
-    else if (nextState.equals("reserve"))
+    else if (!vinyl.getReservedBy().equals(null))
       vinyl.setState(new ReservedWhileBorrowedState());
 
   }
