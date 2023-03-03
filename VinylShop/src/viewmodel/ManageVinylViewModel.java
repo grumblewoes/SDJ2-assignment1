@@ -30,7 +30,8 @@ public class ManageVinylViewModel
   }
   public void reset() {
 
-    Vinyl vinyl = viewState.getVinyl();
+    String title = viewState.getTitle();
+    Vinyl vinyl =  model.getVinylByTitle(title);
 
     errorProperty.set("");
     titleProperty.set(vinyl.getTitle());
@@ -55,8 +56,10 @@ public class ManageVinylViewModel
   }
 
   public void reserve() {
+ // if pending removal is false   if (//)
     try {
-      model.reserveVinyl(viewState.getVinyl().getTitle(), );
+      model.reserveVinyl(viewState.getTitle(),  ); // who is reserving, getNameProperty from ViewController,
+      // not implemented yet;
     }
     catch (Exception e){
       errorProperty.set(e.getMessage());
@@ -64,7 +67,7 @@ public class ManageVinylViewModel
   }
   public void borrow() {
     try {
-      model.borrowVinyl(viewState.getVinyl().getTitle(), );
+      model.borrowVinyl(viewState.getTitle(),  ); // who is borrowing
     }
     catch (Exception e) {
       errorProperty.set(e.getMessage());

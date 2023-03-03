@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Vinyl;
 import model.VinylModel;
@@ -18,10 +19,10 @@ public class ListVinylViewModel
   private ViewState viewState;
   private VinylViewModel vinylViewModel;
 
-  public void ListVinylViewModel(Vinyl model, ViewState viewState) {
+  public void ListVinylViewModel(VinylModel model, ViewState viewState) {
     this.model = model;
     this.viewState = viewState;
-    this.list = new ObservableList<VinylViewModel>();
+    this.list = FXCollections.observableArrayList();
     this.selectedVinylProperty = new SimpleObjectProperty<>();
     this.errorProperty = null;
     this.vinylViewModel = null;
@@ -32,7 +33,16 @@ public class ListVinylViewModel
     selectedVinylProperty.set(null);
   }
   public boolean remove() {
-
+    if (selectedVinylProperty.get()== null) {
+      errorProperty.set("Nothing is selected");
+      return false;
+    }
+      else if (selectedVinylProperty.get()!= null)
+      {
+        model.removeVinyl(selectedVinylProperty.get().getTitleProperty().get());
+        return true;
+      }
+      return true;
   }
   public ObservableList<VinylViewModel> getAll() {
     return list;
@@ -43,11 +53,18 @@ public class ListVinylViewModel
   public StringProperty getErrorProperty() {
     return errorProperty;
   }
-  private void addVinyl(Vinyl vinyl) {
-    list.add(new VinylViewModel(vinyl));
-  }
+
   private void removeVinyl (String name) {
     list.remove(name);
+  }
+
+  private void returnVinyl(String name) {
+    if (selectedVinylProperty.get()== null) {
+      errorProperty.set("Nothing is selected");
+  }
+    else {
+    model.returnVinyl(name);
+    }
   }
 
 

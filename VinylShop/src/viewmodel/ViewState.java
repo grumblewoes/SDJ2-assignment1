@@ -4,16 +4,16 @@ import model.Vinyl;
 
 public class ViewState
 {
- private Vinyl vinyl;
+ private String title;
 
   public ViewState() {
-    this.vinyl = null;
+    this.title = "";
   }
-  public Vinyl getVinyl() {
-    return vinyl;
+  public String getTitle() {
+    return title;
   }
-  public void setVinyl(Vinyl vinyl) {
-    this.vinyl = vinyl;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
 
