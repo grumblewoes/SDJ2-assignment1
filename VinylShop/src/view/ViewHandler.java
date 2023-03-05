@@ -69,12 +69,12 @@ public class ViewHandler
      {
       e.printStackTrace();
      }
-     vinylListViewController.reset();
+
     }
     return vinylListViewController.getRoot();
   }
 
-  public Region loadManageViewController()
+  public Region loadManageViewController(String fxml)
   {
     Region root = null;
     if (manageViewController ==null)
@@ -82,7 +82,7 @@ public class ViewHandler
       try
       {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("manage.fxml"));
+        loader.setLocation(getClass().getResource(fxml));
         root = loader.load();
         manageViewController = loader.getController();
         manageViewController.init(this, viewModelFactory.getManageVinylViewModel(), root);

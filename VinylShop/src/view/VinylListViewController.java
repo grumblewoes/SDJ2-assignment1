@@ -1,35 +1,48 @@
 package view;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 import model.Vinyl;
 import viewmodel.ListVinylViewModel;
 
 public class VinylListViewController
 {
-  @FXML private Label removeLabel;
-  @FXML private  Label returnLabel;
-  @FXML private Label reserveLabel;
-  @FXML private Label borrowLabel;
 
-  @FXML private TableColumn<Vinyl,String> tableColumn;
+  @FXML private TableView<Vinyl> vinylTable;
+  @FXML private TableColumn<Vinyl,String> titleColumn;
+
+  @FXML private TableColumn<Vinyl,String> artistColumn;
+
+  @FXML private TableColumn<Vinyl,String> yearColumn;
+
+  @FXML private TableColumn<Vinyl,String> statusColumn;
+
+
+
 
   private ListVinylViewModel vinylListViewModel;
   private Region root;
   private ViewHandler viewHandler;
 
+  @FXML private Label removeLabel;
+  @FXML private Label borrowLabel;
+  @FXML private Label reserveLabel;
+  @FXML private Label returnLabel;
 
-  public void init(ViewHandler viewHandler, ListVinylViewModel vinylListViewModel, TableColumn tableColumn ){
+
+  public void init(ViewHandler viewHandler, ListVinylViewModel vinylListViewModel,Region root ){
     this.root = root;
     this.viewHandler = viewHandler;
     this.vinylListViewModel = vinylListViewModel;
-    this.tableColumn = tableColumn;
     removeLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
     borrowLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
     reserveLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
     returnLabel.textProperty().bindBidirectional(vinylListViewModel.requestProperty());
+
 
   }
 
@@ -38,11 +51,11 @@ public class VinylListViewController
   }
 
   @FXML private void clickReserve(){
-    vinylListViewModel.reserveVinyl();
+    viewHandler.openView("Reserve");
   }
 
   @FXML private void clickReturn(){
-    vinylListViewModel.returnVinyl();
+    vinylListViewModel.
   }
 
   @FXML private void clickBorrow(){
@@ -56,7 +69,6 @@ public class VinylListViewController
   @FXML private void onShow(){
     viewHandler.openView("Vinyl List");
   }
-
 
 
 }
